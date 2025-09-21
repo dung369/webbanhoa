@@ -1,0 +1,42 @@
+[
+  {
+    "id": "local_fb_1758487409927",
+    "senderId": "bot",
+    "recipientId": "dev-1758487386110",
+    "name": "Hệ thống",
+    "email": null,
+    "message": "Chúng tôi giao hàng trong 2-4 giờ trong nội thành TP.HCM. Đơn hàng trên 500.000đ được miễn phí giao.",
+    "role": "bot",
+    "createdAt": "2025-09-21T20:43:29.927Z"
+  },
+  {
+    "id": "local_fb_1758487409080",
+    "senderId": "dev-1758487386110",
+    "recipientId": "admin",
+    "name": null,
+    "email": null,
+    "message": "ship hàng ra sao",
+    "role": "user",
+    "createdAt": "2025-09-21T20:43:29.080Z"
+  },
+  {
+    "id": "local_fb_1758487359368",
+    "senderId": "admin-1758486962805",
+    "recipientId": null,
+    "name": "Admin",
+    "email": null,
+    "message": "ship hàng ra sao",
+    "role": "admin",
+    "createdAt": "2025-09-21T20:42:39.367Z"
+  },
+  {
+    "id": "local_fb_1758486444762",
+    "senderId": "dev-1758486420887",
+    "recipientId": "admin",
+    "name": null,
+    "email": null,
+    "message": "chào",
+    "role": "user",
+    "createdAt": "2025-09-21T20:27:24.762Z"
+  }
+]
