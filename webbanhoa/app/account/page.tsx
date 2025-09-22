@@ -17,7 +17,7 @@ import {
   CreditCard,
   Bell,
 } from "lucide-react";
-import SiteHeader from '@/components/site-header'
+import SiteHeader from "@/components/site-header";
 
 export default function AccountPage() {
   const [isEditing, setIsEditing] = useState(false);
@@ -296,12 +296,14 @@ export default function AccountPage() {
                       <span className="text-xl font-bold text-rose-600">
                         {item.price.toLocaleString("vi-VN")}đ
                       </span>
-                      <Button
-                        size="sm"
-                        className="bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white"
-                      >
-                        Mua ngay
-                      </Button>
+                      <Link href={`/products/${item.id}`}>
+                        <Button
+                          size="sm"
+                          className="bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white"
+                        >
+                          Xem chi tiết
+                        </Button>
+                      </Link>
                     </div>
                   </CardContent>
                 </Card>

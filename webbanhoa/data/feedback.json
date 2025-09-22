@@ -1,42 +1,42 @@
 [
   {
-    "id": "local_fb_1758487409927",
+    "id": "local_fb_1758547347890",
     "senderId": "bot",
-    "recipientId": "dev-1758487386110",
+    "recipientId": "anon-0nnx27k",
     "name": "Hệ thống",
     "email": null,
-    "message": "Chúng tôi giao hàng trong 2-4 giờ trong nội thành TP.HCM. Đơn hàng trên 500.000đ được miễn phí giao.",
+    "message": "Chúng tôi giao hàng trong vòng 2-4 tiếng tại nội thành và 1-2 ngày cho các tỉnh khác.",
     "role": "bot",
-    "createdAt": "2025-09-21T20:43:29.927Z"
+    "createdAt": "2025-09-22T13:22:27.889Z"
   },
   {
-    "id": "local_fb_1758487409080",
-    "senderId": "dev-1758487386110",
+    "id": "local_fb_1758547347056",
+    "senderId": "anon-0nnx27k",
     "recipientId": "admin",
-    "name": null,
+    "name": "Khách",
     "email": null,
-    "message": "ship hàng ra sao",
+    "message": "Thời gian giao hàng là bao lâu",
     "role": "user",
-    "createdAt": "2025-09-21T20:43:29.080Z"
+    "createdAt": "2025-09-22T13:22:27.055Z"
   },
   {
-    "id": "local_fb_1758487359368",
-    "senderId": "admin-1758486962805",
-    "recipientId": null,
-    "name": "Admin",
-    "email": null,
-    "message": "ship hàng ra sao",
-    "role": "admin",
-    "createdAt": "2025-09-21T20:42:39.367Z"
-  },
-  {
-    "id": "local_fb_1758486444762",
-    "senderId": "dev-1758486420887",
+    "id": "local_fb_1758547330763",
+    "senderId": "anon-0nnx27k",
     "recipientId": "admin",
-    "name": null,
+    "name": "Khách",
     "email": null,
-    "message": "chào",
+    "message": "giao hàng ra sao",
     "role": "user",
-    "createdAt": "2025-09-21T20:27:24.762Z"
+    "createdAt": "2025-09-22T13:22:10.762Z"
+  },
+  {
+    "id": "local_fb_1758547314016",
+    "senderId": "anon-0nnx27k",
+    "recipientId": "admin",
+    "name": "Khách",
+    "email": null,
+    "message": "ship ra sao",
+    "role": "user",
+    "createdAt": "2025-09-22T13:21:54.016Z"
   }
 ]

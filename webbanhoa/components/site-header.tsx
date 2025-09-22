@@ -1,9 +1,9 @@
-"use client"
-import Link from 'next/link'
-import HeaderAuth from '@/components/header-auth'
-import CartButton from '@/components/cart-button'
-import { Button } from '@/components/ui/button'
-import FavoritesDialog from './favorites-dialog'
+"use client";
+import Link from "next/link";
+import HeaderAuth from "@/components/header-auth";
+import CartButton from "@/components/cart-button";
+import { Button } from "@/components/ui/button";
+import FavoritesDialog from "./favorites-dialog";
 
 export default function SiteHeader() {
   return (
@@ -23,16 +23,28 @@ export default function SiteHeader() {
           </div>
 
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-rose-700 hover:text-rose-500 font-medium">
+            <Link
+              href="/"
+              className="text-rose-700 hover:text-rose-500 font-medium"
+            >
               Trang chủ
             </Link>
-            <Link href="/products" className="text-rose-700 hover:text-rose-500 font-medium">
+            <Link
+              href="/products"
+              className="text-rose-700 hover:text-rose-500 font-medium"
+            >
               Sản phẩm
             </Link>
-            <Link href="/about" className="text-rose-700 hover:text-rose-500 font-medium">
+            <Link
+              href="/about"
+              className="text-rose-700 hover:text-rose-500 font-medium"
+            >
               Về chúng tôi
             </Link>
-            <Link href="/contact" className="text-rose-700 hover:text-rose-500 font-medium">
+            <Link
+              href="/contact"
+              className="text-rose-700 hover:text-rose-500 font-medium"
+            >
               Liên hệ
             </Link>
           </nav>
@@ -45,5 +57,5 @@ export default function SiteHeader() {
         </div>
       </div>
     </header>
-  )
+  );
 }

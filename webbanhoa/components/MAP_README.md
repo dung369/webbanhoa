@@ -36,10 +36,10 @@ Integration
 - The component is client-only and loaded dynamically in the checkout page.
 - MapAddressPicker's `onChange` receives a `PickedAddress` object:
   {
-    lat: number,
-    lng: number,
-    formatted: string,
-    components: { street_number, route, sublocality, locality, administrative_area_level_1, country, postal_code }
+  lat: number,
+  lng: number,
+  formatted: string,
+  components: { street_number, route, sublocality, locality, administrative_area_level_1, country, postal_code }
   }
 
 - Wire `onChange` to store the selected address into your form state. Persist both the `formatted` address and the `lat`/`lng` to your order object.
@@ -56,4 +56,3 @@ Delivery rules
 Security
 
 - Keep the API key restricted to allowed referrers. Do not commit .env.local to source control.
-

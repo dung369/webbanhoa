@@ -20,6 +20,7 @@ import AnimatedHeader from "@/components/animated-header";
 import PageTransition from "@/components/page-transition";
 import AdvancedAnimation from "@/components/advanced-animation";
 import InteractiveEffect from "@/components/interactive-effect";
+import AnimatedText from "@/components/animated-text";
 import ParticleBackground from "@/components/particle-background";
 import { firestore } from "@/lib/firebase";
 import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
@@ -131,11 +132,19 @@ export default function ProductsPage() {
         <div className="container mx-auto px-4 py-8 relative z-10">
           <AdvancedAnimation animation="magicAppear" delay={0.2}>
             <div className="text-center mb-12">
-              <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">
-                Bộ Sưu Tập Hoa Tươi
+              <h1 className="text-5xl font-bold mb-4">
+                <AnimatedText 
+                  text="Bộ Sưu Tập Hoa Tươi" 
+                  effect="rainbow"
+                  className="bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent"
+                />
               </h1>
               <p className="text-xl text-rose-700">
-                Khám phá hàng trăm loại hoa tươi cao cấp từ khắp nơi trên thế giới
+                <AnimatedText 
+                  text="Khám phá hàng trăm loại hoa tươi cao cấp từ khắp nơi trên thế giới"
+                  effect="typewriter"
+                  delay={1}
+                />
               </p>
             </div>
           </AdvancedAnimation>
@@ -206,7 +215,7 @@ export default function ProductsPage() {
                       
                       {product.featured && (
                         <Badge className="absolute top-3 left-3 bg-gradient-to-r from-rose-500 to-pink-500 text-white transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
-                          Nổi bật
+                          <AnimatedText text="Nổi bật" effect="wave" />
                         </Badge>
                       )}
                       
@@ -236,7 +245,11 @@ export default function ProductsPage() {
                       
                       <div className="relative z-10">
                         <h3 className="font-bold text-lg text-rose-900 mb-2 group-hover:text-rose-600 transition-colors duration-300">
-                          {product.name}
+                          <AnimatedText 
+                            text={product.name}
+                            effect="wave"
+                            delay={0.1 * index}
+                          />
                         </h3>
 
                         <div className="flex items-start justify-between gap-3 mb-3">
@@ -273,9 +286,11 @@ export default function ProductsPage() {
                         <div className="flex items-center justify-between mb-4">
                           <div className="space-y-1">
                             <div className="flex items-center space-x-2">
-                              <span className="text-2xl font-bold text-rose-600">
-                                {`${Number(product.price || 0).toLocaleString("vi-VN")}đ`}
-                              </span>
+                              <AnimatedText 
+                                text={`${Number(product.price || 0).toLocaleString("vi-VN")}đ`}
+                                effect="glitch"
+                                className="text-2xl font-bold text-rose-600"
+                              />
                               {product.originalPrice && (
                                 <span className="text-sm text-rose-400 line-through">
                                   {Number(product.originalPrice).toLocaleString("vi-VN")}đ
@@ -323,10 +338,14 @@ export default function ProductsPage() {
                   </div>
                 </InteractiveEffect>
                 <h3 className="text-xl font-semibold text-rose-900 mb-2">
-                  Không tìm thấy sản phẩm
+                  <AnimatedText text="Không tìm thấy sản phẩm" effect="wave" />
                 </h3>
                 <p className="text-rose-600">
-                  Thử thay đổi từ khóa tìm kiếm hoặc bộ lọc
+                  <AnimatedText 
+                    text="Thử thay đổi từ khóa tìm kiếm hoặc bộ lọc"
+                    effect="typewriter"
+                    delay={1}
+                  />
                 </p>
               </div>
             </AdvancedAnimation>

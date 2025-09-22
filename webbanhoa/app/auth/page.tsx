@@ -1,109 +1,132 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Separator } from "@/components/ui/separator"
-import { Eye, EyeOff, ArrowLeft } from "lucide-react"
-import Link from "next/link"
-import { useSearchParams, useRouter } from "next/navigation"
-import devAuth, { signIn as devSignIn, register as devRegister, updateProfile as devUpdateProfile, onAuthStateChanged as devOnAuthStateChanged, isAdminUser as devIsAdmin } from "@/lib/devAuth"
+import type React from "react";
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Separator } from "@/components/ui/separator";
+import { Eye, EyeOff, ArrowLeft } from "lucide-react";
+import Link from "next/link";
+import { useSearchParams, useRouter } from "next/navigation";
+import devAuth, {
+  signIn as devSignIn,
+  register as devRegister,
+  updateProfile as devUpdateProfile,
+  onAuthStateChanged as devOnAuthStateChanged,
+  isAdminUser as devIsAdmin,
+} from "@/lib/devAuth";
 
 export default function AuthPage() {
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const [isGoogleLoading, setIsGoogleLoading] = useState(false)
-  const [activeTab, setActiveTab] = useState("login")
-  const [status, setStatus] = useState<{ type: 'success' | 'error' | null; text?: string }>({ type: null })
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState("login");
+  const [status, setStatus] = useState<{
+    type: "success" | "error" | null;
+    text?: string;
+  }>({ type: null });
 
-  const router = useRouter()
+  const router = useRouter();
 
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    const tab = searchParams.get("tab")
+    const tab = searchParams.get("tab");
     if (tab === "register") {
-      setActiveTab("register")
+      setActiveTab("register");
     }
-  }, [searchParams])
+  }, [searchParams]);
 
   const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
+    e.preventDefault();
+    setIsLoading(true);
     try {
-      const form = new FormData(e.target as HTMLFormElement)
-      const email = (form.get('email') as string) || ''
-      const password = (form.get('password') as string) || ''
+      const form = new FormData(e.target as HTMLFormElement);
+      const email = (form.get("email") as string) || "";
+      const password = (form.get("password") as string) || "";
 
       if (!email || !password) {
-        setStatus({ type: 'error', text: 'Vui lòng nhập email và mật khẩu.' })
-        return
+        setStatus({ type: "error", text: "Vui lòng nhập email và mật khẩu." });
+        return;
       }
 
       // use devAuth wrapper which falls back to in-memory auth when Firebase is absent
-      const cred = await devSignIn(email, password)
-      setStatus({ type: 'success', text: 'Đăng nhập thành công' })
+      const cred = await devSignIn(email, password);
+      setStatus({ type: "success", text: "Đăng nhập thành công" });
       // Prefer quick email check for the seeded admin, then fall back to claims
       try {
-        const u = cred?.user || devAuth.currentUser()
-        const emailToCheck = (u && (u.email || u?.user?.email)) || email
-        if (emailToCheck === 'trandaidung9a1@gmail.com') {
-          setTimeout(() => router.push('/admin'), 600)
+        const u = cred?.user || devAuth.currentUser();
+        const emailToCheck = (u && (u.email || u?.user?.email)) || email;
+        if (emailToCheck === "trandaidung9a1@gmail.com") {
+          setTimeout(() => router.push("/admin"), 600);
         } else {
-          const admin = await devIsAdmin(u)
-          setTimeout(() => router.push(admin ? '/admin' : '/'), 600)
+          const admin = await devIsAdmin(u);
+          setTimeout(() => router.push(admin ? "/admin" : "/"), 600);
         }
       } catch (e) {
-        setTimeout(() => router.push('/'), 600)
+        setTimeout(() => router.push("/"), 600);
       }
     } catch (err) {
-      setStatus({ type: 'error', text: (err as any)?.message || 'Lỗi đăng nhập' })
+      setStatus({
+        type: "error",
+        text: (err as any)?.message || "Lỗi đăng nhập",
+      });
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   const handleRegister = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
+    e.preventDefault();
+    setIsLoading(true);
     try {
-      const form = new FormData(e.target as HTMLFormElement)
+      const form = new FormData(e.target as HTMLFormElement);
       // Normalize and trim values, handle missing form entries gracefully
       const _get = (k: string) => {
-        const v = form.get(k)
-        if (v == null) return ''
-        return String(v).trim()
-      }
-      const firstName = _get('firstName')
-      const lastName = _get('lastName')
-      const email = _get('registerEmail')
-      const phone = _get('phone')
-      const password = _get('registerPassword')
-      const confirm = _get('confirmPassword')
+        const v = form.get(k);
+        if (v == null) return "";
+        return String(v).trim();
+      };
+      const firstName = _get("firstName");
+      const lastName = _get("lastName");
+      const email = _get("registerEmail");
+      const phone = _get("phone");
+      const password = _get("registerPassword");
+      const confirm = _get("confirmPassword");
 
-      const missing: string[] = []
-      if (!firstName) missing.push('Họ')
-      if (!lastName) missing.push('Tên')
-      if (!email) missing.push('Email')
-      if (!password) missing.push('Mật khẩu')
+      const missing: string[] = [];
+      if (!firstName) missing.push("Họ");
+      if (!lastName) missing.push("Tên");
+      if (!email) missing.push("Email");
+      if (!password) missing.push("Mật khẩu");
       if (missing.length) {
-        setStatus({ type: 'error', text: `Vui lòng điền: ${missing.join(', ')}` })
-        return
+        setStatus({
+          type: "error",
+          text: `Vui lòng điền: ${missing.join(", ")}`,
+        });
+        return;
       }
       if (password !== confirm) {
-        setStatus({ type: 'error', text: 'Mật khẩu xác nhận không khớp.' })
-        return
+        setStatus({ type: "error", text: "Mật khẩu xác nhận không khớp." });
+        return;
       }
 
-      const userCred = await devRegister(email, password)
+      const userCred = await devRegister(email, password);
       try {
         if (userCred.user) {
-          await devUpdateProfile(userCred.user, { displayName: `${firstName} ${lastName}` })
+          await devUpdateProfile(userCred.user, {
+            displayName: `${firstName} ${lastName}`,
+          });
         }
       } catch (e) {
         // ignore profile update failures
@@ -111,41 +134,47 @@ export default function AuthPage() {
 
       // after register, check admin and redirect appropriately
       try {
-        const u = userCred?.user || devAuth.currentUser()
-        const emailToCheck = (u && (u.email || u?.user?.email)) || email
-        if (emailToCheck === 'trandaidung9a1@gmail.com') {
-          setStatus({ type: 'success', text: 'Đăng ký thành công' })
-          setTimeout(() => router.push('/admin'), 600)
+        const u = userCred?.user || devAuth.currentUser();
+        const emailToCheck = (u && (u.email || u?.user?.email)) || email;
+        if (emailToCheck === "trandaidung9a1@gmail.com") {
+          setStatus({ type: "success", text: "Đăng ký thành công" });
+          setTimeout(() => router.push("/admin"), 600);
         } else {
-          const admin = await devIsAdmin(u)
-          setStatus({ type: 'success', text: 'Đăng ký thành công' })
-          setTimeout(() => router.push(admin ? '/admin' : '/'), 600)
+          const admin = await devIsAdmin(u);
+          setStatus({ type: "success", text: "Đăng ký thành công" });
+          setTimeout(() => router.push(admin ? "/admin" : "/"), 600);
         }
       } catch (e) {
-        setStatus({ type: 'success', text: 'Đăng ký thành công' })
-        setTimeout(() => router.push('/'), 600)
+        setStatus({ type: "success", text: "Đăng ký thành công" });
+        setTimeout(() => router.push("/"), 600);
       }
     } catch (err) {
-      setStatus({ type: 'error', text: (err as any)?.message || 'Lỗi đăng ký' })
+      setStatus({
+        type: "error",
+        text: (err as any)?.message || "Lỗi đăng ký",
+      });
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   const handleGoogleAuth = async () => {
-    setIsGoogleLoading(true)
+    setIsGoogleLoading(true);
     // Simulate Google OAuth flow
     setTimeout(() => {
-      setIsGoogleLoading(false)
+      setIsGoogleLoading(false);
       // Redirect to dashboard or home after successful Google auth
-    }, 2000)
-  }
+    }, 2000);
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50 via-pink-50 to-orange-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Back to home */}
-        <Link href="/" className="inline-flex items-center text-rose-600 hover:text-rose-500 mb-8">
+        <Link
+          href="/"
+          className="inline-flex items-center text-rose-600 hover:text-rose-500 mb-8"
+        >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Về trang chủ
         </Link>
@@ -158,18 +187,33 @@ export default function AuthPage() {
             <CardTitle className="text-2xl font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">
               Hoa Tươi Việt
             </CardTitle>
-            <CardDescription className="text-rose-600">Chào mừng bạn đến với cửa hàng hoa tươi cao cấp</CardDescription>
+            <CardDescription className="text-rose-600">
+              Chào mừng bạn đến với cửa hàng hoa tươi cao cấp
+            </CardDescription>
           </CardHeader>
 
           <CardContent>
             {status.type && (
-              <div className={`mb-4 p-3 rounded ${status.type === 'success' ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`}>
+              <div
+                className={`mb-4 p-3 rounded ${
+                  status.type === "success"
+                    ? "bg-green-50 text-green-800"
+                    : "bg-red-50 text-red-800"
+                }`}
+              >
                 {status.text}
               </div>
             )}
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <Tabs
+              value={activeTab}
+              onValueChange={setActiveTab}
+              className="w-full"
+            >
               <TabsList className="grid w-full grid-cols-2 mb-8">
-                <TabsTrigger value="login" className="data-[state=active]:bg-rose-500 data-[state=active]:text-white">
+                <TabsTrigger
+                  value="login"
+                  className="data-[state=active]:bg-rose-500 data-[state=active]:text-white"
+                >
                   Đăng nhập
                 </TabsTrigger>
                 <TabsTrigger
@@ -207,7 +251,9 @@ export default function AuthPage() {
                         d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                       />
                     </svg>
-                    {isGoogleLoading ? "Đang đăng nhập..." : "Đăng nhập với Google"}
+                    {isGoogleLoading
+                      ? "Đang đăng nhập..."
+                      : "Đăng nhập với Google"}
                   </Button>
 
                   <div className="relative">
@@ -261,10 +307,16 @@ export default function AuthPage() {
 
                     <div className="flex items-center justify-between">
                       <label className="flex items-center space-x-2 text-sm">
-                        <input type="checkbox" className="rounded border-rose-300 text-rose-500 focus:ring-rose-500" />
+                        <input
+                          type="checkbox"
+                          className="rounded border-rose-300 text-rose-500 focus:ring-rose-500"
+                        />
                         <span className="text-rose-700">Ghi nhớ đăng nhập</span>
                       </label>
-                      <Link href="/forgot-password" className="text-sm text-rose-600 hover:text-rose-500">
+                      <Link
+                        href="/forgot-password"
+                        className="text-sm text-rose-600 hover:text-rose-500"
+                      >
                         Quên mật khẩu?
                       </Link>
                     </div>
@@ -346,8 +398,8 @@ export default function AuthPage() {
                     <div className="space-y-2">
                       <Label htmlFor="registerEmail">Email</Label>
                       <Input
-              id="registerEmail"
-              name="registerEmail"
+                        id="registerEmail"
+                        name="registerEmail"
                         type="email"
                         placeholder="your@email.com"
                         required
@@ -358,8 +410,8 @@ export default function AuthPage() {
                     <div className="space-y-2">
                       <Label htmlFor="phone">Số điện thoại</Label>
                       <Input
-                  id="phone"
-                  name="phone"
+                        id="phone"
+                        name="phone"
                         type="tel"
                         placeholder="0123 456 789"
                         required
@@ -398,8 +450,8 @@ export default function AuthPage() {
                       <Label htmlFor="confirmPassword">Xác nhận mật khẩu</Label>
                       <div className="relative">
                         <Input
-                    id="confirmPassword"
-                    name="confirmPassword"
+                          id="confirmPassword"
+                          name="confirmPassword"
                           type={showConfirmPassword ? "text" : "password"}
                           placeholder="••••••••"
                           required
@@ -410,7 +462,9 @@ export default function AuthPage() {
                           variant="ghost"
                           size="sm"
                           className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
-                          onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                          onClick={() =>
+                            setShowConfirmPassword(!showConfirmPassword)
+                          }
                         >
                           {showConfirmPassword ? (
                             <EyeOff className="h-4 w-4 text-rose-500" />
@@ -430,11 +484,17 @@ export default function AuthPage() {
                       />
                       <label htmlFor="terms" className="text-sm text-rose-700">
                         Tôi đồng ý với{" "}
-                        <Link href="/terms" className="text-rose-600 hover:text-rose-500 underline">
+                        <Link
+                          href="/terms"
+                          className="text-rose-600 hover:text-rose-500 underline"
+                        >
                           Điều khoản dịch vụ
                         </Link>{" "}
                         và{" "}
-                        <Link href="/privacy" className="text-rose-600 hover:text-rose-500 underline">
+                        <Link
+                          href="/privacy"
+                          className="text-rose-600 hover:text-rose-500 underline"
+                        >
                           Chính sách bảo mật
                         </Link>
                       </label>
@@ -455,5 +515,5 @@ export default function AuthPage() {
         </Card>
       </div>
     </div>
-  )
+  );
 }

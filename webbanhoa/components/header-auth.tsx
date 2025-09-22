@@ -1,35 +1,39 @@
-"use client"
-import Link from "next/link"
-import { useEffect, useState } from "react"
-import { Button } from "@/components/ui/button"
-import devAuth, { onAuthStateChanged as devOnAuthStateChanged } from "@/lib/devAuth"
+"use client";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import devAuth, {
+  onAuthStateChanged as devOnAuthStateChanged,
+} from "@/lib/devAuth";
 
 export default function HeaderAuth() {
-  const [user, setUser] = useState<any>(devAuth.currentUser())
+  const [user, setUser] = useState<any>(devAuth.currentUser());
 
   useEffect(() => {
     if (devOnAuthStateChanged) {
-      const unsub = devOnAuthStateChanged((u: any) => setUser(u))
-      return () => unsub()
+      const unsub = devOnAuthStateChanged((u: any) => setUser(u));
+      return () => unsub();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   if (user) {
     return (
       <div className="flex items-center space-x-2">
-        <span className="text-rose-700 font-medium">Xin chào, {user.displayName || user.email}</span>
+        <span className="text-rose-700 font-medium">
+          Xin chào, {user.displayName || user.email}
+        </span>
         <button
           onClick={() => {
-            devAuth.signOut()
-            setUser(null)
+            devAuth.signOut();
+            setUser(null);
           }}
           className="bg-transparent border border-rose-300 text-rose-700 px-3 py-1 rounded"
         >
           Đăng xuất
         </button>
       </div>
-    )
+    );
   }
 
   return (
@@ -48,5 +52,5 @@ export default function HeaderAuth() {
         </Button>
       </Link>
     </>
-  )
+  );
 }

@@ -8,7 +8,10 @@
       "originalPrice": 500000,
       "category": "Hoa hồng",
       "origin": "Ecuador",
-      "images": ["/images/Hoa Hồng Đỏ Ecuador.jpg", "/images/Hoa Hồng Phấn.jpg"],
+      "images": [
+        "/images/Hoa Hồng Đỏ Ecuador.jpg",
+        "/images/Hoa Hồng Phấn.jpg"
+      ],
       "inStock": 50,
       "rating": 4.9,
       "reviews": 127,
@@ -45,7 +48,6 @@
       "featured": true,
       "createdAt": "2024-01-25T00:00:00.000Z"
     }
-    
   ],
   "users": [
     {
@@ -88,8 +90,7 @@
       "paymentMethod": "cash",
       "createdAt": "2024-02-01T00:00:00.000Z"
     }
-  ]
-  ,
+  ],
   "carts": [
     {
       "userId": "2",
@@ -99,8 +100,7 @@
       ],
       "updatedAt": "2024-02-02T00:00:00.000Z"
     }
-  ]
-  ,
+  ],
   "favorites": [
     {
       "userId": "2",
@@ -113,6 +113,13 @@
     { "productId": "3", "inStock": 80, "location": "Kho DaLat" }
   ],
   "customers": [
-    { "id": "2", "email": "nguyenvana@email.com", "firstName": "Nguyễn", "lastName": "A", "phone": "0987654321", "createdAt": "2024-01-15T00:00:00.000Z" }
+    {
+      "id": "2",
+      "email": "nguyenvana@email.com",
+      "firstName": "Nguyễn",
+      "lastName": "A",
+      "phone": "0987654321",
+      "createdAt": "2024-01-15T00:00:00.000Z"
+    }
   ]
 }
