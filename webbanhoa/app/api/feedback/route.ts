@@ -58,7 +58,7 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     // accept flexible payload for chat: senderId, recipientId, name, email, message, role
-    const { userId, senderId, recipientId, name, email, message, role } =
+    const { userId, senderId, recipientId, name, email, message, role, subject, phone } =
       body as any;
     const finalMessage = message || body?.text || null;
     if (!finalMessage)
@@ -70,6 +70,8 @@ export async function POST(req: Request) {
       recipientId: recipientId || null,
       name: name || null,
       email: email || null,
+      subject: subject || null,
+      phone: phone || null,
       message: finalMessage,
       role: role || (senderId || userId ? "customer" : "admin"),
       createdAt: new Date().toISOString(),

@@ -93,6 +93,16 @@ export default function AdminFeedbackPage() {
                           <div className="text-sm text-slate-600">
                             {it.email}
                           </div>
+                          {it.phone && (
+                            <div className="text-sm text-slate-600">
+                              {it.phone}
+                            </div>
+                          )}
+                          {it.subject && (
+                            <div className="text-sm text-slate-700 font-medium">
+                              Chủ đề: {it.subject}
+                            </div>
+                          )}
                           <div className="text-xs text-slate-500">
                             {it.createdAt}
                           </div>
@@ -106,7 +116,7 @@ export default function AdminFeedbackPage() {
                           </Button>
                         </div>
                       </div>
-                      <div className="mt-3 text-slate-700">{it.message}</div>
+                      <div className="mt-3 text-slate-700 whitespace-pre-line">{it.message}</div>
                     </div>
                   ))
                 )}

@@ -80,11 +80,24 @@ export default function ContactPage() {
     }
 
     setIsSubmitting(true);
-    
+
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      // Gửi dữ liệu sang API feedback để lưu cho admin xem
+      const res = await fetch("/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: `${firstName} ${lastName}`.trim(),
+          email,
+          phone,
+          subject,
+          message: messageText,
+          role: "customer",
+        }),
+      });
+
+      if (!res.ok) throw new Error("Failed to send");
+
       setNotice("Cảm ơn bạn! Chúng tôi sẽ phản hồi trong vòng 24h.");
       setFirstName("");
       setLastName("");
@@ -92,7 +105,7 @@ export default function ContactPage() {
       setPhone("");
       setSubject("");
       setMessageText("");
-      
+
       setTimeout(() => setNotice(null), 5000);
     } catch (error) {
       setNotice("Có lỗi xảy ra. Vui lòng thử lại sau!");
@@ -178,7 +191,7 @@ export default function ContactPage() {
         {/* Hero Section */}
         <section className="py-20 relative z-10">
           <div className="container mx-auto px-4">
-            <AdvancedAnimation animation="spiralIn" delay={0.2}>
+            <AdvancedAnimation animation="slideUp" delay={0.2}>
               <div className="text-center mb-16">
                 <InteractiveEffect effect="sparkle">
                   <Badge className="bg-gradient-to-r from-rose-100 to-pink-100 text-rose-700 hover:from-rose-200 hover:to-pink-200 mb-4 transform hover:scale-110 transition-all duration-300">
@@ -465,9 +478,9 @@ export default function ContactPage() {
                   </div>
                 </AdvancedAnimation>
 
-                {/* Sidebar */}
-                <AdvancedAnimation animation="slideRight" delay={0.5}>
-                  <div className="space-y-8">
+                {/* Info column aligned with form (stacked on the right at lg) */}
+                <AdvancedAnimation animation="slideRight" delay={0.5} className="lg:col-span-1 self-start">
+                  <div className="grid grid-cols-1 gap-8">
                     
                     {/* Working Hours */}
                     <Card className="bg-white/90 backdrop-blur-md border-rose-100 shadow-xl">
@@ -532,34 +545,36 @@ export default function ContactPage() {
                         </div>
                       </CardContent>
                     </Card>
-
-                    {/* FAQ */}
-                    <Card className="bg-white/90 backdrop-blur-md border-rose-100 shadow-xl">
-                      <CardHeader>
-                        <CardTitle className="text-xl font-bold text-rose-900">
-                          Câu Hỏi Thường Gặp
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="space-y-4">
-                          {faqs.map((faq, index) => (
-                            <AdvancedAnimation key={index} animation="slideUp" delay={0.1 * index}>
-                              <InteractiveEffect effect="ripple">
-                                <div className="p-4 rounded-lg bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-100 hover:shadow-lg transition-shadow duration-300">
-                                  <h4 className="font-semibold text-rose-800 mb-2">
-                                    {faq.question}
-                                  </h4>
-                                  <p className="text-sm text-rose-700">
-                                    {faq.answer}
-                                  </p>
-                                </div>
-                              </InteractiveEffect>
-                            </AdvancedAnimation>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </Card>
                   </div>
+                </AdvancedAnimation>
+
+                {/* FAQ placed under the form (spans 2 columns on lg) */}
+                <AdvancedAnimation animation="slideUp" delay={0.55} className="lg:col-span-2">
+                  <Card className="bg-white/90 backdrop-blur-md border-rose-100 shadow-xl">
+                    <CardHeader>
+                      <CardTitle className="text-xl font-bold text-rose-900">
+                        Câu Hỏi Thường Gặp
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        {faqs.map((faq, index) => (
+                          <AdvancedAnimation key={index} animation="slideUp" delay={0.1 * index}>
+                            <InteractiveEffect effect="ripple">
+                              <div className="p-4 rounded-lg bg-gradient-to-r from-rose-50 to-pink-50 border border-rose-100 hover:shadow-lg transition-shadow duration-300">
+                                <h4 className="font-semibold text-rose-800 mb-2">
+                                  {faq.question}
+                                </h4>
+                                <p className="text-sm text-rose-700">
+                                  {faq.answer}
+                                </p>
+                              </div>
+                            </InteractiveEffect>
+                          </AdvancedAnimation>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
                 </AdvancedAnimation>
               </div>
             </div>

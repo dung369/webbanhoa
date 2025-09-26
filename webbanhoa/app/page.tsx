@@ -11,6 +11,7 @@ import AdvancedAnimation from "@/components/advanced-animation";
 import InteractiveEffect from "@/components/interactive-effect";
 import FloatingPetals from "@/components/floating-petals";
 import ParticleBackground from "@/components/particle-background";
+import HeroBanner from "@/components/hero-banner";
 const AddToCart = dynamic(() => import("@/components/add-to-cart"), {
   ssr: false,
 });
@@ -70,121 +71,48 @@ export default function HomePage() {
       <AnimatedHeader />
 
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8 relative z-10">
-              <div className="space-y-4">
-                <AdvancedAnimation animation="magicAppear" delay={0.2}>
-                  <Badge className="bg-rose-100 text-rose-700 hover:bg-rose-200">
-                    🌹 Hoa tươi nhập khẩu cao cấp
-                  </Badge>
-                </AdvancedAnimation>
-
-                <AdvancedAnimation animation="spiralIn" delay={0.4}>
-                  <h1 className="text-5xl lg:text-6xl font-bold text-rose-900 leading-tight">
-                    <span className="block">Hoa Tươi</span>
-                    <span className="block bg-gradient-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent">
-                      Đẹp Nhất
-                    </span>
-                    Cho Bạn
-                  </h1>
-                </AdvancedAnimation>
-
-                <AdvancedAnimation animation="liquidWave" delay={0.6}>
-                  <p className="text-xl text-rose-700 leading-relaxed">
-                    Khám phá bộ sưu tập hoa tươi cao cấp từ Đà Lạt và nhập khẩu.
-                    Giao hàng nhanh chóng, chất lượng đảm bảo.
-                  </p>
-                </AdvancedAnimation>
-              </div>
-
-              <AdvancedAnimation animation="elasticScale" delay={0.8}>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <InteractiveEffect effect="sparkle">
-                    <Link href="/products">
-                      <Button
-                        size="lg"
-                        className="bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white px-8 py-4 text-lg transform hover:scale-105 transition-all duration-300 relative overflow-hidden w-full sm:w-auto"
-                      >
-                        <span className="relative z-10">Xem bộ sưu tập</span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 opacity-0 hover:opacity-20 transition-opacity duration-300"></div>
-                      </Button>
-                    </Link>
-                  </InteractiveEffect>
-                </div>
-              </AdvancedAnimation>
-
-              <AdvancedAnimation animation="floatingBounce" delay={1.0}>
-                <div className="flex items-center space-x-8 pt-4">
-                  <InteractiveEffect effect="ripple">
-                    <div className="flex items-center space-x-2 cursor-pointer">
-                      <Truck className="w-6 h-6 text-rose-500" />
-                      <span className="text-rose-700 font-medium">
-                        Giao hàng miễn phí
-                      </span>
-                    </div>
-                  </InteractiveEffect>
-                  <InteractiveEffect effect="ripple">
-                    <div className="flex items-center space-x-2 cursor-pointer">
-                      <Shield className="w-6 h-6 text-rose-500" />
-                      <span className="text-rose-700 font-medium">
-                        Đảm bảo chất lượng
-                      </span>
-                    </div>
-                  </InteractiveEffect>
-                </div>
-              </AdvancedAnimation>
+      <section className="relative overflow-hidden">
+        <HeroBanner
+          images={["/images/1.jpg", "/images/2.jpg", "/images/3.jpg"]}
+          captions={[
+            <div key="c1" className="space-y-4">
+              <Badge className="bg-rose-500/90 text-white">🌹 Hoa tươi nhập khẩu cao cấp</Badge>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">Thiết Kế Nghệ Thuật</h1>
+              <p className="text-base md:text-lg text-white/90 max-w-lg">Tinh tế, lãng mạn và được chọn lọc kỹ – phù hợp cho mọi dịp đặc biệt.</p>
+              <Link href="/products">
+                <Button size="lg" className="bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white px-8 py-4 text-lg transform hover:scale-[1.02] transition-all duration-300 relative overflow-hidden">
+                  <span className="relative z-10">Xem bộ sưu tập</span>
+                  <div className="absolute inset-0 bg-white/10 opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                </Button>
+              </Link>
+            </div>,
+            <div key="c2" className="space-y-4">
+              <Badge className="bg-rose-500/90 text-white">Sắc Hồng Dịu Nhẹ</Badge>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">Cảm Hứng Từ Hoa</h1>
+              <p className="text-base md:text-lg text-white/90 max-w-lg">Những gợi ý phối hoa tinh tế, tôn lên vẻ đẹp tự nhiên.</p>
+              <Link href="/products">
+                <Button size="lg" className="bg-white/15 hover:bg-white/25 text-white px-8 py-4">Khám phá ngay</Button>
+              </Link>
+            </div>,
+            <div key="c3" className="space-y-4">
+              <Badge className="bg-rose-500/90 text-white">Ưu Đãi Hôm Nay</Badge>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">Quà Tặng Dịu Ngọt</h1>
+              <p className="text-base md:text-lg text-white/90 max-w-lg">Tặng người thương một bó hoa – thay lời muốn nói.</p>
+              <Link href="/products">
+                <Button size="lg" className="bg-white/15 hover:bg-white/25 text-white px-8 py-4">Mua ngay</Button>
+              </Link>
             </div>
-
-            <AdvancedAnimation animation="morphIn" delay={0.5}>
-              <div className="relative">
-                <div className="relative z-10">
-                  <img
-                    src="/images/ảnh cửa hàng hoa.jpg"
-                    alt="Hoa tươi cao cấp"
-                    className="w-full h-auto rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-500"
-                  />
-                  {/* Magical glow effect */}
-                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-rose-400 via-pink-400 to-purple-400 opacity-0 hover:opacity-20 transition-opacity duration-500"></div>
-                </div>
-                <div className="absolute -top-4 -right-4 w-full h-full bg-gradient-to-br from-rose-200 to-pink-200 rounded-3xl -z-10 animate-pulse"></div>
-
-                {/* Floating elements around image */}
-                <AdvancedAnimation
-                  animation="glowPulse"
-                  delay={2}
-                  repeat={true}
-                >
-                  <div className="absolute top-4 right-4 text-2xl">🌸</div>
-                </AdvancedAnimation>
-                <AdvancedAnimation
-                  animation="glowPulse"
-                  delay={2.5}
-                  repeat={true}
-                >
-                  <div className="absolute bottom-4 left-4 text-2xl">🌺</div>
-                </AdvancedAnimation>
-                <AdvancedAnimation
-                  animation="glowPulse"
-                  delay={3}
-                  repeat={true}
-                >
-                  <div className="absolute top-1/2 -left-4 text-2xl">🌷</div>
-                </AdvancedAnimation>
-              </div>
-            </AdvancedAnimation>
-          </div>
-        </div>
+          ]}
+        />
       </section>
 
       {/* Featured Products */}
-      <section className="py-20 bg-white/50 relative">
+  <section className="pt-8 md:pt-12 pb-20 bg-white/50 relative">
         {/* Section Background Effect */}
         <div className="absolute inset-0 bg-gradient-to-r from-rose-50/50 via-transparent to-pink-50/50"></div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <AdvancedAnimation animation="magicAppear" delay={0.2}>
+          <AdvancedAnimation animation="fadeIn" delay={0.2}>
             <div className="text-center mb-16">
               <Badge className="bg-rose-100 text-rose-700 hover:bg-rose-200 mb-4">
                 Sản phẩm nổi bật
@@ -203,34 +131,18 @@ export default function HomePage() {
             {featuredFlowers.map((flower, index) => (
               <AdvancedAnimation
                 key={flower.id}
-                animation={
-                  index % 4 === 0
-                    ? "spiralIn"
-                    : index % 4 === 1
-                    ? "bounceIn"
-                    : index % 4 === 2
-                    ? "flipIn"
-                    : "elasticScale"
-                }
+                animation={index % 3 === 0 ? "slideUp" : index % 3 === 1 ? "fadeIn" : "slideRight"}
                 delay={0.1 * index}
               >
                 <InteractiveEffect
-                  effect={
-                    index % 4 === 0
-                      ? "fireworks"
-                      : index % 4 === 1
-                      ? "confetti"
-                      : index % 4 === 2
-                      ? "sparkle"
-                      : "explosion"
-                  }
+                  effect={index % 2 === 0 ? "sparkle" : "ripple"}
                 >
-                  <Card className="group hover:shadow-2xl transition-all duration-500 border-rose-100 overflow-hidden transform hover:-translate-y-4 hover:rotate-1 card-hover bg-gradient-to-br from-white via-rose-50/30 to-pink-50/30">
+                  <Card className="group hover:shadow-2xl transition-all duration-500 border-rose-100 overflow-hidden transform hover:-translate-y-2 card-hover bg-gradient-to-br from-white via-rose-50/30 to-pink-50/30">
                     <div className="relative overflow-hidden">
                       <img
                         src={flower.image || "/placeholder.svg"}
                         alt={flower.name}
-                        className="w-full h-64 object-cover group-hover:scale-125 transition-transform duration-700"
+                        className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-700"
                       />
 
                       {/* Magical overlay */}
@@ -238,12 +150,12 @@ export default function HomePage() {
 
                       {/* Sparkle effects */}
                       <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <AdvancedAnimation animation="glowPulse" repeat={true}>
+                        <AdvancedAnimation animation="fadeIn" repeat={false}>
                           <span className="text-yellow-400">✨</span>
                         </AdvancedAnimation>
                       </div>
 
-                      <Badge className="absolute top-3 left-3 bg-gradient-to-r from-rose-500 to-pink-500 text-white transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                      <Badge className="absolute top-3 left-3 bg-gradient-to-r from-rose-500 to-pink-500 text-white transform group-hover:scale-105 transition-all duration-300">
                         {flower.badge}
                       </Badge>
 
@@ -342,7 +254,7 @@ export default function HomePage() {
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          <AdvancedAnimation animation="spiralIn" delay={0.3}>
+          <AdvancedAnimation animation="slideUp" delay={0.2}>
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-rose-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
                 Tại Sao Chọn Chúng Tôi?
@@ -376,12 +288,12 @@ export default function HomePage() {
                 animation={feature.animation as any}
                 delay={0.2 * index}
               >
-                <InteractiveEffect effect="sparkle">
-                  <div className="text-center p-8 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 hover:rotate-1">
+                <InteractiveEffect effect="ripple">
+                  <div className="text-center p-8 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
                     <AdvancedAnimation
-                      animation="glowPulse"
+                      animation="fadeIn"
                       delay={1 + index * 0.5}
-                      repeat={true}
+                      repeat={false}
                     >
                       <div className="text-6xl mb-6 inline-block">
                         {feature.icon}

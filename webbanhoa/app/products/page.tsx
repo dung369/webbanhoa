@@ -21,6 +21,7 @@ import PageTransition from "@/components/page-transition";
 import AdvancedAnimation from "@/components/advanced-animation";
 import InteractiveEffect from "@/components/interactive-effect";
 import ParticleBackground from "@/components/particle-background";
+import SiteFooter from "@/components/site-footer";
 import { firestore } from "@/lib/firebase";
 import { collection, query, orderBy, onSnapshot } from "firebase/firestore";
 import { mockProducts } from "@/lib/mock-data";
@@ -170,7 +171,7 @@ export default function ProductsPage() {
               <AdvancedAnimation
                 key={product.id}
                 animation={
-                  index % 6 === 0 ? "spiralIn" :
+                  index % 6 === 0 ? "slideUp" :
                   index % 6 === 1 ? "bounceIn" :
                   index % 6 === 2 ? "flipIn" :
                   index % 6 === 3 ? "elasticScale" :
@@ -188,7 +189,7 @@ export default function ProductsPage() {
                     "ripple"
                   }
                 >
-                  <Card className="group hover:shadow-2xl transition-all duration-500 border-rose-100 overflow-hidden transform hover:-translate-y-4 hover:rotate-1 bg-gradient-to-br from-white via-rose-50/30 to-pink-50/30 card-hover">
+                  <Card className="group hover:shadow-2xl transition-all duration-500 border-rose-100 overflow-hidden transform hover:-translate-y-3 bg-gradient-to-br from-white via-rose-50/30 to-pink-50/30 card-hover">
                     <div className="relative overflow-hidden">
                       <img
                         src={product.images?.[0] || "/placeholder.svg"}
@@ -205,7 +206,7 @@ export default function ProductsPage() {
                       </div>
                       
                       {product.featured && (
-                        <Badge className="absolute top-3 left-3 bg-gradient-to-r from-rose-500 to-pink-500 text-white transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                        <Badge className="absolute top-3 left-3 bg-gradient-to-r from-rose-500 to-pink-500 text-white transform group-hover:scale-105 transition-all duration-300">
                           Nổi bật
                         </Badge>
                       )}
@@ -332,6 +333,9 @@ export default function ProductsPage() {
             </AdvancedAnimation>
           )}
         </div>
+        {/* Footer */}
+        {/* @ts-ignore */}
+        <SiteFooter />
       </div>
     </PageTransition>
   );

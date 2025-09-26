@@ -21,6 +21,7 @@ import {
 import { useFavorites } from "@/components/favorites-provider";
 import CartButton from "@/components/cart-button";
 import SiteHeader from "@/components/site-header";
+import SiteFooter from "@/components/site-footer";
 import { firestore } from "@/lib/firebase";
 import {
   doc,
@@ -524,6 +525,9 @@ export default function ProductDetailPage({
           </div>
         )}
       </div>
+      {/* Footer */}
+      {/* @ts-ignore */}
+      <SiteFooter />
     </div>
   );
 }

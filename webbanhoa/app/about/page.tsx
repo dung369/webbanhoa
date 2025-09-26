@@ -125,7 +125,7 @@ export default function AboutPage() {
         {/* Hero Section */}
         <section className="py-20 relative z-10">
           <div className="container mx-auto px-4">
-            <AdvancedAnimation animation="spiralIn" delay={0.2}>
+            <AdvancedAnimation animation="slideUp" delay={0.2}>
               <div className="text-center mb-16">
                 <InteractiveEffect effect="sparkle">
                   <Badge className="bg-gradient-to-r from-rose-100 to-pink-100 text-rose-700 hover:from-rose-200 hover:to-pink-200 mb-4 transform hover:scale-110 transition-all duration-300">
@@ -349,7 +349,7 @@ export default function AboutPage() {
         {/* Team Section */}
         <section className="py-20 bg-white/60 backdrop-blur-md relative z-10">
           <div className="container mx-auto px-4">
-            <AdvancedAnimation animation="spiralIn" delay={0.2}>
+            <AdvancedAnimation animation="slideUp" delay={0.2}>
               <div className="text-center mb-16">
                 <InteractiveEffect effect="sparkle">
                   <Badge className="bg-gradient-to-r from-rose-100 to-pink-100 text-rose-700 hover:from-rose-200 hover:to-pink-200 mb-4 transform hover:scale-110 transition-all duration-300">
@@ -372,7 +372,7 @@ export default function AboutPage() {
                   key={index}
                   animation={
                     index % 5 === 0 ? "magicAppear" :
-                    index % 5 === 1 ? "spiralIn" :
+                    index % 5 === 1 ? "slideUp" :
                     index % 5 === 2 ? "bounceIn" :
                     index % 5 === 3 ? "flipIn" :
                     "elasticScale"
