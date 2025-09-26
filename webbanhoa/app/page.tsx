@@ -76,38 +76,70 @@ export default function HomePage() {
           images={["/images/1.jpg", "/images/2.jpg", "/images/3.jpg"]}
           captions={[
             <div key="c1" className="space-y-4">
-              <Badge className="bg-rose-500/90 text-white">🌹 Hoa tươi nhập khẩu cao cấp</Badge>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">Thiết Kế Nghệ Thuật</h1>
-              <p className="text-base md:text-lg text-white/90 max-w-lg">Tinh tế, lãng mạn và được chọn lọc kỹ – phù hợp cho mọi dịp đặc biệt.</p>
+              <Badge className="bg-rose-500/90 text-white">
+                🌹 Hoa tươi nhập khẩu cao cấp
+              </Badge>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                Thiết Kế Nghệ Thuật
+              </h1>
+              <p className="text-base md:text-lg text-white/90 max-w-lg">
+                Tinh tế, lãng mạn và được chọn lọc kỹ – phù hợp cho mọi dịp đặc
+                biệt.
+              </p>
               <Link href="/products">
-                <Button size="lg" className="bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white px-8 py-4 text-lg transform hover:scale-[1.02] transition-all duration-300 relative overflow-hidden">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white px-8 py-4 text-lg transform hover:scale-[1.02] transition-all duration-300 relative overflow-hidden"
+                >
                   <span className="relative z-10">Xem bộ sưu tập</span>
                   <div className="absolute inset-0 bg-white/10 opacity-0 hover:opacity-100 transition-opacity duration-300" />
                 </Button>
               </Link>
             </div>,
             <div key="c2" className="space-y-4">
-              <Badge className="bg-rose-500/90 text-white">Sắc Hồng Dịu Nhẹ</Badge>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">Cảm Hứng Từ Hoa</h1>
-              <p className="text-base md:text-lg text-white/90 max-w-lg">Những gợi ý phối hoa tinh tế, tôn lên vẻ đẹp tự nhiên.</p>
+              <Badge className="bg-rose-500/90 text-white">
+                Sắc Hồng Dịu Nhẹ
+              </Badge>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                Cảm Hứng Từ Hoa
+              </h1>
+              <p className="text-base md:text-lg text-white/90 max-w-lg">
+                Những gợi ý phối hoa tinh tế, tôn lên vẻ đẹp tự nhiên.
+              </p>
               <Link href="/products">
-                <Button size="lg" className="bg-white/15 hover:bg-white/25 text-white px-8 py-4">Khám phá ngay</Button>
+                <Button
+                  size="lg"
+                  className="bg-rose-500/90 hover:bg-rose-600/90 text-white px-8 py-4"
+                >
+                  Khám phá ngay
+                </Button>
               </Link>
             </div>,
             <div key="c3" className="space-y-4">
-              <Badge className="bg-rose-500/90 text-white">Ưu Đãi Hôm Nay</Badge>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">Quà Tặng Dịu Ngọt</h1>
-              <p className="text-base md:text-lg text-white/90 max-w-lg">Tặng người thương một bó hoa – thay lời muốn nói.</p>
+              <Badge className="bg-rose-500/90 text-white">
+                Ưu Đãi Hôm Nay
+              </Badge>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                Quà Tặng Dịu Ngọt
+              </h1>
+              <p className="text-base md:text-lg text-white/90 max-w-lg">
+                Tặng người thương một bó hoa – thay lời muốn nói.
+              </p>
               <Link href="/products">
-                <Button size="lg" className="bg-white/15 hover:bg-white/25 text-white px-8 py-4">Mua ngay</Button>
+                <Button
+                  size="lg"
+                  className="bg-rose-500/90 hover:bg-rose-600/90 text-white px-8 py-4"
+                >
+                  Mua ngay
+                </Button>
               </Link>
-            </div>
+            </div>,
           ]}
         />
       </section>
 
       {/* Featured Products */}
-  <section className="pt-8 md:pt-12 pb-20 bg-white/50 relative">
+      <section className="pt-8 md:pt-12 pb-20 bg-white/50 relative">
         {/* Section Background Effect */}
         <div className="absolute inset-0 bg-gradient-to-r from-rose-50/50 via-transparent to-pink-50/50"></div>
 
@@ -131,7 +163,13 @@ export default function HomePage() {
             {featuredFlowers.map((flower, index) => (
               <AdvancedAnimation
                 key={flower.id}
-                animation={index % 3 === 0 ? "slideUp" : index % 3 === 1 ? "fadeIn" : "slideRight"}
+                animation={
+                  index % 3 === 0
+                    ? "slideUp"
+                    : index % 3 === 1
+                    ? "fadeIn"
+                    : "slideRight"
+                }
                 delay={0.1 * index}
               >
                 <InteractiveEffect
