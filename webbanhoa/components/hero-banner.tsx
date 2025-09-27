@@ -3,6 +3,7 @@
 import { ReactNode, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 interface HeroBannerProps {
   images: string[];
@@ -10,6 +11,10 @@ interface HeroBannerProps {
   className?: string;
   rounded?: string;
   captions?: ReactNode[];
+  /** CSS object-position value, e.g. "center", "top", "center 20%" */
+  objectPosition?: string;
+  /** Alt text prefix for slides, default: "Banner" */
+  altPrefix?: string;
 }
 
 export default function HeroBanner({
@@ -18,6 +23,8 @@ export default function HeroBanner({
   className,
   rounded = "rounded-3xl",
   captions,
+  objectPosition = "center",
+  altPrefix = "Banner",
 }: HeroBannerProps) {
   const [index, setIndex] = useState(0);
 
@@ -38,16 +45,26 @@ export default function HeroBanner({
       )}
     >
       <AnimatePresence mode="wait">
-        <motion.img
-          key={images[index]}
-          src={images[index]}
-          alt={`Banner ${index + 1}`}
-          initial={{ opacity: 0, scale: 1.02 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 1.01 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+        {/** Use next/image for better performance and automatic resizing */}
+        {/** Wrap Image with motion for transitions */}
+        {(() => {
+          const MotionImage: any = motion(Image as any);
+          return (
+            <MotionImage
+              key={images[index]}
+              src={images[index]}
+              alt={`${altPrefix} ${index + 1}`}
+              fill
+              priority={index === 0}
+              sizes="100vw"
+              style={{ objectFit: "cover", objectPosition }}
+              initial={{ opacity: 0, scale: 1.02 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.01 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            />
+          );
+        })()}
       </AnimatePresence>
 
       {/* subtle gradient overlay for readability */}
@@ -55,7 +72,7 @@ export default function HeroBanner({
 
       {/* caption overlay */}
       {captions && captions[index] && (
-        <div className="absolute left-0 right-0 top-[45%] -translate-y-1/2 pl-12 pr-6 md:pl-24 lg:pl-32 xl:pl-36 flex">
+        <div className="absolute left-0 right-0 top-[45%] -translate-y-1/2 pl-12 pr-6 md:pl-24 lg:pl-32 xl:pl-36 flex z-[1]">
           <AnimatePresence mode="wait">
             <motion.div
               key={`caption-${index}`}
@@ -72,7 +89,7 @@ export default function HeroBanner({
       )}
 
       {/* indicators */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-[1]">
         {images.map((_, i) => (
           <button
             key={i}
